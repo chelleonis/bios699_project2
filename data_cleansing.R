@@ -3,7 +3,7 @@
 
 #codings
 # exposure (cigs_everysome_ESTD), 
-
+#run this first xd
 
 library(survey)
 library(dplyr)
@@ -23,21 +23,9 @@ smoke_glm <- smoke %>%
 worst_glm <- glm(outcome ~ menthol_cig , data = smoke_glm, family = binomial)
 summary(bad_glm)
 
-smoke_glm_2 <- smoke_glm %>% filter(wave == 1)
+smoke_glm_2 <- smoke_glm %>% filter(wave == 1)%>% 
+  mutate(wave = as.integer(wave))
 
 
-#cross section yr 1:
-ok_glm <- glm(outcome ~ menthol_cig , data = smoke_glm_2, family = binomial)
-summary(ok_glm)
+#other renaming?
 
-#note, repeat for all 4 lol
-
-
-test <- svyglm(formula)
-
-
-#longitudinal 
-library(lme4)
-library(lmerTest)
-
-#random, year/ID?

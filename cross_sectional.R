@@ -28,6 +28,9 @@ cross_glm_w1 <- svyglm(outcome ~ menthol_cig, data = smoke_glm_2, family = binom
                        design = cs1_surv)
 summary(cross_glm_w1)
 
+comparison <- glm(outcome ~ menthol_cig, data = smoke_glm_2, weights= R01_A_PWGT)
+summary(comparison)
+
 #note, repeat for all 4 lol
 
 cs2_surv <- svydesign(ids =~PERSONID, data = smoke_glm_2,weights =~R01_A_PWGT)
@@ -83,7 +86,7 @@ summary(cross_glm_w4)
 
 #confidence interval function:
 #bonferroni correct when you have multiple variables
-# coef(summary(your_reg_here))
+#coef(summary(your_reg_here))
 
 ci_95 <- function(summary_obj) {
   z = 1.96
@@ -92,6 +95,8 @@ ci_95 <- function(summary_obj) {
   # e^(Bj +/- z*SE(Bj))
   CI_lower = exp(Bj - z*SE_Bj)
   CI_upper = exp(Bj + z*SE_Bj) 
-  return(c(CI_lower,CI_upper))
+  return(c(CI_lower,Bj,CI_upper))
 }
+
+ci_w4_surv <- ci_95(cross_glm_w4)
 

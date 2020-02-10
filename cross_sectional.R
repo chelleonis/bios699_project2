@@ -19,11 +19,11 @@ summary(bad_glm)
 
 
 #cross section yr 1: (no weights)
-ok_glm <- glm(outcome ~ menthol_cig , data = smoke_glm_2, family = binomial)
+ok_glm <- glm(outcome ~ menthol_cig ,data = smoke_glm_2, family = binomial)
 summary(ok_glm)
 
 #cross section year 1: (WITH WEIGHTS)
-cs1_surv <- svydesign(ids =~PERSONID, data = smoke_glm_2,weights =~R01_A_PWGT)
+cs1_surv <- svydesign(ids =~PERSONID, data = smoke_glm_2,weights =~R01_A_PWGT, strata = VARSTRAT)
 cross_glm_w1 <- svyglm(outcome ~ menthol_cig, data = smoke_glm_2, family = binomial, 
                        design = cs1_surv)
 summary(cross_glm_w1)

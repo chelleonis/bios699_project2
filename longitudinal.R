@@ -13,7 +13,12 @@ smoke_glmix <- smoke %>%
   mutate(wt_long = case_when(wave == 1 ~ R01_A_PWGT,
                              wave == 2 ~ R02_A_PWGT,
                              wave == 3 ~ R03_A_AWGT,
-                             wave == 4 ~ R04_A_A01WGT))
+                             wave == 4 ~ R04_A_A01WGT))  %>%
+  filter(!is.na(VARSTRAT))
+
+smoke_glmix$wt_long[is.na(smoke_glmix$wt_long)] <- 1
+
+
 
 #naive LMM
 
@@ -35,13 +40,19 @@ summary(naive_glmm)
 #                       design = glmix_wts)
 #summary(cross_glm_w1)
 
-glmm_wt_model <- lmer(formula = outcome ~ 1 + wave + menthol_cig + (1 | PERSONID), 
-                       data = smoke_glmix, weights = wt_long)
+glmm_wt_model <- glmer(formula = outcome ~ 1 + menthol_cig + (1 | PERSONID), 
+                       data = smoke_glmix, weights = wt_long, family = binomial)
 summary(glmm_wt_model)
 
 #it's kinda bad, let's try something else
 
 library(svylme)
+#lol doesn't work either fuck
+glmix_wts <- svydesign(ids =~PERSONID, strata =~VARSTRAT, 
+                       data = smoke_glmix,weights =~wt_long)
 
+glmm_wt_model_1 <- svy2lme(outcome ~ 1 + menthol_cig + (1 | PERSONID), 
+                           design = glmix_wts)
+summary(glmm_wt_model_1)
 
 

@@ -44,6 +44,8 @@ glmm_wt_model <- glmer(formula = outcome ~ 1 + menthol_cig + (1 | PERSONID),
                        data = smoke_glmix, weights = wt_long, family = binomial)
 summary(glmm_wt_model)
 
+
+
 #it's kinda bad, let's try something else
 
 library(svylme)

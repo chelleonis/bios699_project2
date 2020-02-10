@@ -23,13 +23,14 @@ ok_glm <- glm(outcome ~ menthol_cig ,data = smoke_glm_2, family = binomial)
 summary(ok_glm)
 
 #cross section year 1: (WITH WEIGHTS)
-cs1_surv <- svydesign(ids =~PERSONID, data = smoke_glm_2,weights =~R01_A_PWGT, strata = VARSTRAT)
-cross_glm_w1 <- svyglm(outcome ~ menthol_cig, data = smoke_glm_2, family = binomial, 
+cs1_surv <- svydesign(ids =~PERSONID, data = smoke_glm_2,weights =~R01_A_PWGT, strata =~VARSTRAT)
+cross_glm_w1 <- svyglm(outcome ~ menthol_cig, data = smoke_glm_2, family = binomial,
                        design = cs1_surv)
 summary(cross_glm_w1)
 
 comparison <- glm(outcome ~ menthol_cig, data = smoke_glm_2, weights= R01_A_PWGT)
 summary(comparison)
+
 
 #note, repeat for all 4 lol
 

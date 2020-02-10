@@ -82,11 +82,16 @@ summary(cross_glm_w4)
 
 
 #confidence interval function:
+#bonferroni correct when you have multiple variables
+# coef(summary(your_reg_here))
 
 ci_95 <- function(summary_obj) {
-  
-  
-  
-  return(1)
+  z = 1.96
+  Bj = coef(summary(summary_obj))[2,1]
+  SE_Bj = coef(summary(summary_obj))[2,2]
+  # e^(Bj +/- z*SE(Bj))
+  CI_lower = exp(Bj - z*SE_Bj)
+  CI_upper = exp(Bj + z*SE_Bj) 
+  return(c(CI_lower,CI_upper))
 }
 

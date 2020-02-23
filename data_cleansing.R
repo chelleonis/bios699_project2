@@ -26,6 +26,9 @@ summary(bad_glm)
 smoke_glm_2 <- smoke_glm %>% filter(wave == 1)%>% 
   mutate(wave = as.integer(wave))
 
+CreateTableOne(vars = c("cigs_everysome_ESTD", "ecigs_everysome", "menthol_cig", "male", "educat", "income"), strata = c("wave"),
+               data = smoke_glm)
 
-#other renaming?
+#collapse data
+
 

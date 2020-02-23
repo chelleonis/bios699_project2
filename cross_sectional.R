@@ -96,7 +96,7 @@ ci_95 <- function(summary_obj) {
   # e^(Bj +/- z*SE(Bj))
   CI_lower = exp(Bj - z*SE_Bj)
   CI_upper = exp(Bj + z*SE_Bj) 
-  return(c(CI_lower,Bj,CI_upper))
+  return(c(CI_lower,exp(Bj),CI_upper))
 }
 
 ci_w4_surv <- ci_95(cross_glm_w4)

@@ -29,7 +29,7 @@ naive_glmm <- glmer(formula = outcome ~ 1 + educat + menthol_cig + (1 | PERSONID
                    data = smoke_glmix_reduced, family = binomial)
 summary(naive_glmm)
 
-#too big doesn't work wtf
+#too big doesn't work
 #test <- glmer(formula = outcome ~ 1 + wave + cigs_everysome_ESTD + (1 | PERSONID), 
 #                    data = smoke_glmix, family = binomial)
 

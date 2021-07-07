@@ -5,8 +5,6 @@ smoke <- read.csv('C:/Users/typer321/Documents/bios699_project2/data/PATH data f
 
 #convert from words into numbers for analysis reasons(?)
 
-#wave 1 data only cuz i'm lazy as fuck
-
 #regular gm
 smoke_glm <- smoke %>% 
   mutate(outcome = case_when(ecigs_everysome == "none" ~ 0,
@@ -15,7 +13,6 @@ smoke_glm <- smoke %>%
 #no accounting for years at all, nor survey weights
 worst_glm <- glm(outcome ~ menthol_cig , data = smoke_glm, family = binomial)
 summary(bad_glm)
-
 
 
 #cross section yr 1: (no weights)

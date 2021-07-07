@@ -1,4 +1,4 @@
-
+#descriptive analysis for each category
 
 smoke <- read.csv('C:/Users/typer321/Documents/bios699_project2/data/PATH data file_BSTT699_2020.csv')
 
@@ -37,8 +37,5 @@ table(smoke$cigs_everysome_ESTD)
 
 #group by wave
 #then see how many people are menthol and that stuff
-
-
-
 
 #graph that includes % of people who mentholed at that time

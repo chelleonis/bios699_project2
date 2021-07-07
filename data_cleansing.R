@@ -3,7 +3,7 @@
 
 #codings
 # exposure (cigs_everysome_ESTD), 
-#run this first xd
+#run this first
 
 library(survey)
 library(dplyr)
@@ -11,8 +11,6 @@ library(dplyr)
 smoke <- read.csv('C:/Users/typer321/Documents/bios699_project2/data/PATH data file_BSTT699_2020.csv')
 
 #convert from words into numbers for analysis reasons(?)
-
-#wave 1 data only cuz i'm lazy as fuck
 
 #regular gm
 smoke_glm <- smoke %>% 
